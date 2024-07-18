@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificación Predial</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .text-black {
+            color: black;
+        }
+
+        .font-weight-bold {
+            font-weight: bold;
+        }
+        .info-legal{
+            padding: 10px;
+        }
+        .border-l {
+            border-right: 1px solid black;
+           
+        }
+
+        .border-r {
+            border-right: 1px solid black;
+            
+        }
+        
+        
+        .contenido-datos .col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .distrito{
+            border-left: 1px solid black;
+            border-right:1px solid black ;
+        }
+        .nombre{
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .firmas {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 100px;
+            margin-bottom: 30px;
+        }
+
+        .firma-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%; 
+            text-align: center; 
+        }
+
+        .firma-item .linea {
+            width: 100%;
+            border-top: 1px solid black;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .firma-line {
+            display: flex; align-items: center; justify-content: space-between; padding-top: 10px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container p-4 text-center  font-weight-bold text-black ">
+        <div class="row">
+            <div class="col-4 d-flex justify-content-center align-items-center" style="background-color: rgba(255, 255, 255, 0.5);">
+                <img class="" height="280px" width="280px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROtsa3p_AFWupY5hHS46oPyY928FsJM48MyvaA3yFYemsGmqG1vGh-pB8DiubUyYwyxfI&usqp=CAU" alt="logo ayuntamiento">
+            </div>
+            <div class="col-8 mb-1 ">
+                <h1 class="text-center">H. AYUNTAMIENTO DE ENSENADA B.C.N</h1>
+                <h6 class="text-center">DIRECCION DE CATASTRO Y CONTROL URBANO</h6>
+                <h3 class="text-center">NOTIFICACION PREDIAL</h3>
+                <p class=" info-legal text-center "> 
+                    Con fundamento en los artículos 49, 50, 52, 53, 54, 55, 56 y 75 BIS A de la Ley de Hacienda Municipal para el Estado de Baja California; y los artículos 12, 36 y 37 de la Ley de Catastro Inmobiliario del Estado de Baja California, se hace de su conocimiento que, al ser propietario y/o poseedor del predio a continuación descrito, existe a su cargo la obligación de pagar el impuesto predial correspondiente de conformidad con las especificaciones señaladas en las leyes de la materia. Para los efectos legales a que haya lugar, se hace de su conocimiento que dicho impuesto deberá ser enterado ante las oficinas de recaudación de rentas municipales durante los primeros meses del año. En caso contrario, las autoridades fiscales, en su uso de facultades de comprobación, iniciarán el procedimiento administrativo de ejecución en su contra.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-3 border border-dark">
+                <h4><strong>Movimientos</strong></h4>
+                <h4>RA3 7</h4>
+            </div>
+
+            <div class="col-3 border border-dark">
+                <h4><strong>Numero de tramite</strong></h4>
+                <h4>23213</h4>
+            </div>
+        </div>
+        <div class="row border border-dark">
+            <div class="nombre col-7 border-r">
+                <h4><strong>Nombre propietario</strong></h4>
+                <h4>Edgar limon</h4>
+            </div>
+            <div class="col contenido-datos d-flex ">
+                <div class=" col-4  border-black  mb-1">
+                    <h4><strong>Municipio</strong></h4>
+                    <h4>Ensenada</h4>
+                </div>
+                <div class="col-4 distrito  mb-1">
+                    <h4><strong>Distrito</strong></h4>
+                    <h4>01</h4>
+                </div>
+                <div class="col-4 text-center">
+                    <h4><strong>Clave</strong></h4>
+                    <h4>FH001001</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col border border-dark text-left">
+                <h4><strong>Domicilio predio:</strong></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 border border-dark">
+                <h4><strong>Calle</strong></h4>
+                <h4>Isla de la gitanta y cavo colonet</h4>
+            </div>
+            <div class="col-1 border border-dark pl-1">
+                <h4><strong>No.Ext</strong></h4>
+                <h4>222</h4>
+            </div>
+            <div class="col-1 border border-dark pl-1">
+                <h4><strong>No.Int</strong></h4>
+                <h4>222</h4>
+            </div>
+            <div class="col-4 border border-dark">
+                <h4><strong>Colonia</strong></h4>
+                <h4>Popular 89 segunda seccion</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Delegacion</strong></h4>
+                <h4>Ensenada</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>CP</strong></h4>
+                <h4>22812</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Manzana</strong></h4>
+                <h4>001</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Lote</strong></h4>
+                <h4>001</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Fracciones</strong></h4>
+                <h4>A1 y B1</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Condominio</strong></h4>
+                <h4>No</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Unidad</strong></h4>
+                <h4>No</h4>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col border border-dark text-left">
+                <h4><strong>Informacion del predio</strong></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 border border-dark">
+                <h4><strong>Superficie</strong></h4>
+                <h4>2232.123 <spam>m2</spam></h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>V.U Zona</strong></h4>
+                <h4>22.123</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Castigo</strong></h4>
+                <h4>10<spam>%</spam></h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>V.U Predio</strong></h4>
+                <h4>08.13</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Construcion</strong></h4>
+                <h4>10.5 <spam>m2</spam></h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong> Uso</strong></h4>
+                <h4>No</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Tasa</strong></h4>
+                <h4>12.34</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Frente</strong></h4>
+                <h4>No</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Valor fiscal</strong></h4>
+                <h4>123444.45</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Fecha Alta</strong></h4>
+                <h4>12/12/2024</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Fecha vig</strong></h4>
+                <h4>12/12/2024</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Fecha Not</strong></h4>
+                <h4>12/12/2024</h4>
+            </div>
+            <div class="col-12 border border-dark">
+                <h4><strong>Clave Anterior</strong></h4>
+                <h4>CG001001</h4>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col border border-dark text-left">
+                <h4><strong>Domicilio notificacion:</strong></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 border border-dark">
+                <h4><strong>Colonia</strong></h4>
+                <h4>Popular 89 segunda seccion</h4>
+            </div>
+            <div class="col-2 border border-dark pl-1">
+                <h4><strong>No.Ext</strong></h4>
+                <h4>222</h4>
+            </div>
+            <div class="col-2 border border-dark pl-1">
+                <h4><strong>No.Int</strong></h4>
+                <h4>222</h4>
+            </div>
+            <div class="col-4 border border-dark">
+                <h4><strong>Sector</strong></h4>
+                <h4>FH</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Delegacion</strong></h4>
+                <h4>Ensenada</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Municipio</strong></h4>
+                <h4>Ensenada</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Estado</strong></h4>
+                <h4>Baja California Norte</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Pais</strong></h4>
+                <h4>Mexico</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>CP</strong></h4>
+                <h4>22812</h4>
+            </div>
+            <div class="col-2 border border-dark">
+                <h4><strong>Telefono</strong></h4>
+                <h4>6461234567</h4>
+            </div>
+        </div>
+        <div class="row justify-content-center py-40">
+            <div class="col border border-dark text-left">
+                <h3 class="mb-10">comentarios:</h3>
+                <h4>lorem kjhoihiugiukjhoiupoihkjñhyioyuiojhiuyiughgiugh cdqwdqwdqwdqwdqwdqwd dfqwefwefqwefqwefqwefqwefwqefqwefqwefqwefqwefqwefqwefqwefqwefqwefqwfdsfasdfasdf</h4>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col border border-dark text-left">
+                
+                <div class="firmas">
+                    <div class="firma-item">
+                        <hr style="border-top: 1px solid black; width: 100%; margin-bottom: 10px;">
+                        <h4><strong>Ing.gortazar<br><hr>Jefe de Registro Inmoviliario</strong></h4>
+                    </div>
+                    <div class="firma-item">
+                        <hr style="border-top: 1px solid black; width: 100%; margin-bottom: 10px;">
+                        <h4><strong>Ing. Grabril Humberto Gonzales Rios <br> <hr>Director de Catastro y Control Urbano</strong></h4>
+                    </div>
+                    <div class="firma-item">
+                        <hr style="border-top: 1px solid black; width: 100%; margin-bottom: 10px;">
+                        <h4><strong>Recibi Original del presente:</strong></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class=" col text-left p-4">
+                <h5>Corriendose translado de copía a quien dijo ser el C. _______________________</p>
+                <h5>En su caracter de : ______________________________________</p>
+                <h5>Quien se identifico con: __________________________________</h5>
+                <h5>Quien firma al cance de recivido y entregado: __________________________</h5>
+                <div class="firma-line">
+                    <h5>Notificado por: __________________________</h5>
+                    <h5>Quien se identifico previamente</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

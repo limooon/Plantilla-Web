@@ -1,0 +1,80 @@
+{% extends "base/base.html" %}
+
+{% block page_content %}
+<!-- Dropdown Card Example -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Notificaciones</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Acciones:</div>
+                <a class="dropdown-item" href="{% url 'ControlUrbano:notificacion_crear' %}">Nueva Notificación</a>
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        {% if not obj %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>No hay registros.</strong> No se encontraron Notificaciones disponibles actualmente.
+        </div>
+        {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Propietario</th>
+                        <th>Superficie</th>
+                        <th>Número Oficial</th>
+                        <th>Clave Catastral</th>
+                        <th>Fecha Alta</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if  obj %}
+                        {% for item in obj %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.datos.nombre_propietario }}</td>
+                            <td>{{ item.datos.superficie }}</td>
+                            <td>{{ item.datos.numero_oficial }}</td>
+                            <td>{{ item.datos.clave_catastral }}</td>
+                            <td>{{ item.datos.fecha_alta }}</td>
+                            <td class="d-flex">
+                                <a href="{% url 'ControlUrbano:notificacion_detalle' item.pk %}" class="btn btn-info btn-sm">Detalle</a>
+                                <a href="{% url 'ControlUrbano:notificacion_editar' item.pk %}" class="btn btn-primary btn-sm ml-2">Editar</a>
+                                <a href="{% url 'ControlUrbano:notificacion_eliminar' item.pk %}" class="btn btn-danger btn-sm ml-2">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock page_content %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json" // Traducción a español
+            }
+        });
+    });
+</script>
+{% endblock js_page %}

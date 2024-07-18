@@ -1,0 +1,63 @@
+.text-black {
+    color: black;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+.info-legal{
+    padding: 10px;
+}
+.border-l {
+    border-right: 1px solid black;
+   
+}
+
+.border-r {
+    border-right: 1px solid black;
+    
+}
+
+
+.contenido-datos .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.distrito{
+    border-left: 1px solid black;
+    border-right:1px solid black ;
+}
+.nombre{
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+.firmas {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.firma-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%; 
+    text-align: center; 
+}
+
+.firma-item .linea {
+    width: 100%;
+    border-top: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.firma-line {
+    display: flex; align-items: center; justify-content: space-between; padding-top: 10px;
+}

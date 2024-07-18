@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Compra</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            margin: 2px;
+            line-height: 1.6;
+        }
+        /* Estilos de la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 2px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        /* Estilos para el título */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Estilos para la tabla de detalles */
+        .detalle-table {
+            margin-top: 20px;
+        }
+        .detalle-table th, .detalle-table td {
+            padding: 6px;
+            border: 1px solid #ddd;
+        }
+        .detalle-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalle de Compra</h1>
+
+    <!-- Encabezado de la compra -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha de Compra</th>
+                <th>Observación</th>
+                <th>No. Factura</th>
+                <th>Fecha de Factura</th>
+                <th>Subtotal</th>
+                <th>Descuento</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if encabezado %}
+            <tr>
+                <td>{{ encabezado.id }}</td>
+                <td>{{ encabezado.fecha_compra | date:"d/m/Y" }}</td>
+                <td>{{ encabezado.observacion }}</td>
+                <td>{{ encabezado.no_factura }}</td>
+                <td>{{ encabezado.fecha_factura | date:"d/m/Y" }}</td>
+                <td>{{ encabezado.sub_total }}</td>
+                <td>{{ encabezado.descuento }}</td>
+                <td>{{ encabezado.total }}</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <!-- Detalles de los productos comprados -->
+    <table class="detalle-table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Descuento</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if detalle %}
+                {% for detalles in detalle %}
+                <tr>
+                    <td>{{ detalles.producto }}</td>
+                    <td>{{ detalles.cantidad }}</td>
+                    <td>{{ detalles.sub_total }}</td>
+                    <td>{{ detalles.descuento }}</td>
+                    <td>{{ detalles.total }}</td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+
+</body>
+</html>

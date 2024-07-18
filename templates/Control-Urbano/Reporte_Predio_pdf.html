@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Predio</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            margin: 10px;
+        }
+    
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+    
+        .header p {
+            font-size: 12px;
+            margin: 0;
+        }
+    
+        .section {
+            margin-bottom: 30px;
+        }
+    
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>H. AYUNTAMIENTO DE ENSENADA BC</h1>
+        <p>SECRETARÍA DE ADMINISTRACIÓN URBANA<br>DIRECCIÓN DE CATASTRO</p>
+        {% if request %}
+            {% for item in request %}
+             <p>Fecha de generación: {{ item | date:"d/m/Y H:i" }}</p>
+           {% endfor %}
+        {% endif %}
+    </div>
+    <!-- Datos Generales -->
+    <div class="section">
+        <h2 class="section-title">Datos Generales</h2>
+        <table>
+            <tbody>
+                {% if catastro %}
+                    {% for item in catastro %}
+                        <tr>
+                            <th>Nombre del Propietario</th>
+                            <td>{{ item.nombre_propietario }}</td>
+                            <th>Número Oficial</th>
+                            <td>{{ item.numero_oficial }}</td>
+                        </tr>
+                        <tr>
+                            <th>Clave Catastral</th>
+                            <td>{{ item.clave_catastral }}</td>
+                            <th>Superficie</th>
+                            <td>{{ item.superficie }}</td>
+                        </tr>
+                        <tr>
+                            <th>Valor Unitario Zona</th>
+                            <td>{{ item.valor_unitario_zona }}</td>
+                            <th>Valor Unitario Predio</th>
+                            <td>{{ item.valor_unitario_predio }}</td>
+                        </tr>
+                        <tr>
+                            <th>Clave Anterior</th>
+                            <td colspan="3">{{ item.clave_anterior }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Detalles del Predio -->
+    <div class="section">
+        <h2 class="section-title">Detalles del Predio</h2>
+        <table>
+            <tbody>
+                {% if catastro %}
+                    {% for item in catastro %}
+                        <tr>
+                            <th>Parcelas</th>
+                            <td>{{ item.parcelas }}</td>
+                            <th>Condominio</th>
+                            <td>{{ item.get_condominio_display }}</td>
+                        </tr>
+                        <tr>
+                            <th>Unidad</th>
+                            <td>{{ item.unidad }}</td>
+                            <th>Nombre del Condominio</th>
+                            <td>{{ item.nombre_condominio }}</td>
+                        </tr>
+                        <tr>
+                            <th>Valor Unitario Zona</th>
+                            <td>{{ item.valor_unitario_zona }}</td>
+                            <th>Valor Unitario Predio</th>
+                            <td>{{ item.valor_unitario_predio }}</td>
+                        </tr>
+                        <tr>
+                            <th>Superficie Construcción</th>
+                            <td colspan="3">{{ item.superficie_construccion }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

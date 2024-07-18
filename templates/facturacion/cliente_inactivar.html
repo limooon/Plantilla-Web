@@ -1,0 +1,47 @@
+{% extends "base/base.html" %}
+
+{% block page_content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Confirmar inactivación</h5>
+        </div>
+        <div class="card-body">
+            <p>¿Estás seguro de que deseas inactivar "{{ obj.nombres }}"?</p>
+            <form id="inactivarForm" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Inactivar</button>
+                <a href="{% url 'fac:clientes-lista' %}" class="btn btn-primary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
+
+{% block js_page %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('inactivarForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+
+            Swal.fire({
+                title: 'Confirmar',
+                text: '¿Estás seguro de inactivar este proveedor?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, inactivar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si se confirma, enviar el formulario
+                    event.target.submit();
+                }
+            });
+        });
+    });
+</script>
+{% endblock js_page %}
+

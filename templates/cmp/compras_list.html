@@ -1,0 +1,89 @@
+{% extends "base/base.html" %}
+
+{% block page_content %}
+<!-- Dropdown Card Example -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Compras Encabezados</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Acciones:</div>
+                <a class="dropdown-item" href="{% url 'cmp:compras_create' %}">Nueva Compra</a>
+                <a class="dropdown-item" href="{% url 'cmp:productoslist' %}">Productos Disponibles</a>
+                <a class="dropdown-item" href="{% url 'cmp:render_pdf_view' %}">Reporte de compras</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Card Body -->
+    <div class="card-body">
+        {% if not obj %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>No hay compras encabezadas.</strong> No se encontraron compras encabezadas disponibles actualmente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha Compra</th>
+                        <th>Observación</th>
+                        <th>No. Factura</th>
+                        <th>Fecha Factura</th>
+                        <th>Subtotal</th>
+                        <th>Descuento</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compra in obj %}
+                    <tr>
+                        <td>{{ compra.id }}</td>
+                        <td>{{ compra.fecha_compra }}</td>
+                        <td>{{ compra.observacion }}</td>
+                        <td>{{ compra.no_factura }}</td>
+                        <td>{{ compra.fecha_factura }}</td>
+                        <td>{{ compra.sub_total }}</td>
+                        <td>{{ compra.descuento }}</td>
+                        <td>{{ compra.total }}</td>
+                        <td>{{ compra.estado }}</td>
+                        <td class="d-flex">
+                            <a href="{% url 'cmp:compras_update' pk=compra.pk %}" class="btn btn-primary btn-sm m-1"
+                                role="button">Editar</a>
+                            <a href="{% url 'cmp:imprimir_compras' pk=compra.pk %}" class="btn btn-primary btn-sm m-1" role="button">compra</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock page_content %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json" // Traducción a español
+            }
+        });
+    });
+
+</script>
+{% endblock js_page %}

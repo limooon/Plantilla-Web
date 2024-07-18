@@ -1,0 +1,76 @@
+{% extends "base/base.html" %}           
+                
+{% block page_content %}
+  <!-- Dropdown Card Example -->
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">listado de unidades de medida</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                    aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Acciones:</div>
+                    <a class="dropdown-item" href="{% url 'Inv:um-add' %}">Nueva Unidad</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            {% if not obj %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>No hay categorías.</strong> No se encontraron unidaddes de medida disponibles actualmente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% else %}
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>     
+                        <tr>
+                            <th>ID</th>
+                            <th>DESCRIPCION</th>
+                            <th>ESTADO</th>
+                            <th>F-CREADO</th>
+                            <th>F-MODIFICADO</th>
+                            <th class="all">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in obj  %}
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>{{item.descripcion}}</td>
+                                <td>{{item.estado|yesno:"Activo,Inactivo"}}</td>
+                                <td>{{item.fecha_creacion|date:"d/m/Y H:i:s" }}</td>
+                                <td>{{item.fecha_modificacion|date:"d/m/Y H:i:s" }}</td>
+                                <td class="d-fle gap-1">
+                                    <a href="{% url 'Inv:um-update' pk=item.pk %} " role="button" class="btn btn-primary btn-sm">Editar</a>
+                                    <a href="{% url 'Inv:um-inactiva' pk=item.pk %}" role="button"  class="btn btn-danger btn-sm">Inactivar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+        
+{% endblock page_content %}
+
+{% block footer %}{% endblock footer %}
+                   
+{% block js_page %}
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
+{% endblock js_page %}

@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+
+{% block page_content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Completa el formulario</h5>
+        </div>
+        <div class="card-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form id="nuevaInformacionForm" method="POST" class="post-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="{% url 'ControlUrbano:registros_lista' %}" class="btn btn-primary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
+
+{% block js_page %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('nuevaInformacionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            Swal.fire({
+                title: 'Confirmar',
+                text: '¿Estás seguro de guardar la información?',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, guardar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si se confirma, enviar el formulario
+                    event.target.submit();
+                }
+            });
+        });
+    });
+</script>
+{% endblock js_page %}

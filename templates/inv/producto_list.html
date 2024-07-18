@@ -1,0 +1,87 @@
+{% extends "base/base.html" %}           
+                
+{% block page_content %}
+  <!-- Dropdown Card Example -->
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">listado de productos</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                    aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Acciones:</div>
+                    <a class="dropdown-item" href="{% url 'Inv:producto-add' %}">Nuevo producto</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            {% if not obj %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>No hay categorías.</strong> No se encontraron productos disponibles actualmente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% else %}
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Código</th>
+                            <th>Código de Barras</th>
+                            <th>Descripción</th>
+                            <th>ESTADO</th>
+                            <th>Precio</th>
+                            <th>Existencia</th>
+                            <th>Última Compra</th>
+                            <th>Marca</th>
+                            <th>Unidad de Medida</th>
+                            <th>Subcategoría</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in obj %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.codigo }}</td>
+                                <td>{{ item.codigo_barra }}</td>
+                                <td>{{ item.descripcion }}</td>
+                                <td>{{item.estado|yesno:"Activo,Inactivo"}}</td>
+                                <td>{{ item.precio }}</td>
+                                <td>{{ item.existencia }}</td>
+                                <td>{{ item.ultima_compra|default_if_none:"No especificada" }}</td>
+                                <td>{{ item.marca.descripcion }}</td>
+                                <td>{{ item.unidad_medida.descripcion }}</td>
+                                <td>{{ item.subcategoria.descripcion }}</td>
+                                <td class="text-center  align-middle">
+                                    <div class=" d-flex gap-2" >
+                                        <a href="{% url 'Inv:producto-update' pk=item.pk %}" role="button" class="btn btn-primary btn-sm ">Editar</a>
+                                        <a href="{% url 'Inv:producto-inactiva' pk=item.pk %}" role="button" class="btn btn-danger btn-sm">Inactivar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+        
+{% endblock page_content %}
+
+{% block footer %}{% endblock footer %}
+                   
+{% block js_page %}
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
+{% endblock js_page %}

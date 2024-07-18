@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Compra</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            margin: 5px;
+            line-height: 1.6;
+        }
+        /* Estilos de la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        /* Estilos para el título */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalles de Compra</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha de Compra</th>
+                <th>Observación</th>
+                <th>No. Factura</th>
+                <th>Fecha de Factura</th>
+                <th>Subtotal</th>
+                <th>Descuento</th>
+                <th>Total</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for compra in obj %}
+            <tr>
+                <td>{{ compra.id }}</td>
+                <td>{{ compra.fecha_compra | date:"d/m/Y" }}</td>
+                <td>{{ compra.observacion }}</td>
+                <td>{{ compra.no_factura }}</td>
+                <td>{{ compra.fecha_factura | date:"d/m/Y" }}</td>
+                <td>{{ compra.sub_total }}</td>
+                <td>{{ compra.descuento }}</td>
+                <td>{{ compra.total }}</td>
+                <td>{{ compra.estado }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

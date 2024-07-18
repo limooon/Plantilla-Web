@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <title>Notificación Predial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 60px;
+        }
+        .documento {
+           
+            padding: 20px;
+            border-radius: 10px;
+            
+        }
+        .encabezado-principal {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1200px;
+            margin: 0 auto; 
+        }
+        
+        img{
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 200px;
+            height: 200px;
+        }
+        .datos-enc{
+            padding: 10px;
+        }
+        .info-legal{
+            padding: 10px;
+        }
+        .inicio-datos{
+            border: 1px solid black;
+            height: 90px;
+        }
+        .up-data{
+            display: flex;
+            justify-content: space-between;
+            
+        }
+        .bloque-informacion{
+            
+            text-align: center;
+        }
+        .data-up{
+            border: 1px solid black;
+            padding: 10px;
+        }
+        .info-principal{
+            display: flex;
+            height: 100px;
+            border: 1px solid black;
+            
+        }
+        .nombre{
+            width: 60%;
+            border-left: 1px solid black;
+        }
+        .extra{
+            display: flex;
+            justify-content:space-around;
+            align-items:start;
+            width: 40%;
+        }
+        .extra div{
+           padding: 5px;
+        }
+        .datos-locales{
+            text-align: center;
+            border-right: 1px solid black; 
+            padding: 3px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:start;
+        }
+        
+        .datos-enc-p{
+            border-left: 1px solid black;
+        }
+        .domicilio-data{
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border: 1px solid black;
+        }
+        .data-predio{
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1px solid black;
+        }
+        .domicilio-informacion{
+
+        }
+        .data-notificacion{
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1px solid black;
+        }
+        .bloque-informacion{
+            text-align: left;
+            padding: 10px;
+            height: 180px;
+            
+        }
+        .bloque-informacion-comentarios{
+            text-align: left;
+            padding: 10px;
+            height: 180px;
+            border:1px solid black;
+        }
+        .firmas{
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1px solid black;
+            height: 180px;
+        }
+        .info-p{
+            text-align: center;
+            margin-top: 0%;
+        }
+    </style>
+</head>
+<body>
+    <div class="documento">
+        <div class="encabezado-principal">
+            <div class="img-logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROtsa3p_AFWupY5hHS46oPyY928FsJM48MyvaA3yFYemsGmqG1vGh-pB8DiubUyYwyxfI&usqp=CAU" alt="logo ayuntamiento">
+            </div>
+            <div class="datos-enc">
+                <h1>H. AYUNTAMIENTO DE ENSENADA B.C.N</h1>
+                <h4>DIRECCION DE CATASTRO Y CONTROL URBANO</h4>
+                <h2>NOTIFICACION PREDIAL</h2>
+                <hr>
+                <p class=" info-legal  "> 
+                    Con fundamento en los artículos 49, 50, 52, 53, 54, 55, 56 y 75 BIS A de la Ley de Hacienda Municipal para el Estado de Baja California; y los artículos 12, 36 y 37 de la Ley de Catastro Inmobiliario del Estado de Baja California, se hace de su conocimiento que, al ser propietario y/o poseedor del predio a continuación descrito, existe a su cargo la obligación de pagar el impuesto predial correspondiente de conformidad con las especificaciones señaladas en las leyes de la materia. Para los efectos legales a que haya lugar, se hace de su conocimiento que dicho impuesto deberá ser enterado ante las oficinas de recaudación de rentas municipales durante los primeros meses del año. En caso contrario, las autoridades fiscales, en su uso de facultades de comprobación, iniciarán el procedimiento administrativo de ejecución en su contra.
+                </p>
+            </div>
+        </div>
+        {% if notificacion %}
+            {% for item in notificacion %}
+                <div class="inicio-datos">
+                    <div class="up-data">
+                        <div class="bloque-informacion">
+                            <h4 class="info-p"><strong>Movimientos</strong></h4>
+                            <h4 class="data-up">{{ item.opcion_tramite }}</h4>
+                        </div>
+                        <div class="bloque-informacion">
+                            <h4 class="info-p"><strong>Numero de tramite</strong></h4>
+                            <h4 class="data-up">{{ item.numero_tramite }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-principal">
+                    <div class="nombre datos-locales">
+                       <h4 class="info-p"><strong>Nombre propietario</strong></h4>
+                       <h4>{{ item.datos.nombre_propietario }}</h4>
+                    </div>
+                    <div class="extra">
+                       <div class="">
+                           <h4 class="info-p"><strong>Municipio</strong></h4>
+                           <h4>{{ item.datos.municipio }}</h4>
+                       </div>
+                       <div class="">
+                           <h4 class="info-p"><strong>Distrito</strong></h4>
+                           <h4>{{ item.datos.distrito }}</h4>
+                       </div>
+                       <div class="">
+                           <h4 class="info-p"><strong>Clave</strong></h4>
+                           <h4>{{ item.datos.clave_catastral }}</h4>
+                       </div>
+                   </div>    
+                </div>
+                <div class="domicio-container">
+                    <h4><strong>Domicilio predio:</strong></h4>
+                    <div class="domicilio-data">
+                        <div class="datos-locales">
+                            <h4 class=""><strong>Calle</strong></h4>
+                            <h4>{{ item.datos.calle }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>No.Ext</strong></h4>
+                            <h4>{{ item.datos.numero_exterior }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>No.Int</strong></h4>
+                            <h4>{{ item.datos.numero_interior }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>Colonia</strong></h4>
+                            <h4>{{ item.datos.colonia }}</h4>
+                        </div>
+                        <div>
+                            <h4><strong>Delegacion</strong></h4>
+                            <h4>{{ item.datos.delegacion }}</h4>
+                        </div>
+                    </div>
+                    <div class="domicilio-data">
+                        <div  class="datos-locales">
+                            <h4><strong>CP</strong></h4>
+                            <h4>{{ item.datos.codigo_postal }}</h4>
+                        </div>
+                        <div  class="datos-locales">
+                            <h4><strong>Manzana</strong></h4>
+                            <h4>{{ item.datos.manzana }}</h4>
+                        </div>
+                        <div  class="datos-locales">
+                            <h4><strong>Lote</strong></h4>
+                            <h4>{{ item.datos.lote }}</h4>
+                        </div>
+                        <div  class="datos-locales">
+                            <h4><strong>Fracciones</strong></h4>
+                            <h4>{{ item.datos.fracciones }}</h4>
+                        </div>
+                        <div  class="datos-locales">
+                            <h4><strong>Condominio</strong></h4>
+                            <h4>{{ item.datos.condominio }}</h4>
+                        </div>
+                        <div>
+                            <h4><strong>Unidad</strong></h4>
+                            <h4>{{ item.datos.unidad }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="predio-informacion">
+                    <h4><strong>Informacion del predio</strong></h4>
+                    <div class="data-predio">
+                        <div class="datos-locales">
+                            <h4><strong>Superficie</strong></h4>
+                            <h4>{{ item.datos.superficie }}<span>m2</span></h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>V.U Zona</strong></h4>
+                            <h4>{{ item.datos.valor_unitario_zona }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>Castigo</strong></h4>
+                            <h4>{{ item.datos.castigo }}<span>%</span></h4>
+                        </div>
+                        <div>
+                            <h4><strong>V.U Predio</strong></h4>
+                            <h4>{{ item.datos.valor_unitario_predio }}</h4>
+                        </div>
+                    </div>
+                    <div class="data-predio">
+                        <div class="datos-locales">
+                            <h4><strong>Construccion</strong></h4>
+                            <h4>{{ item.datos.superficie_construccion }}<span>m2</span></h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>Uso</strong></h4>
+                            <h4>{{ item.datos.uso_suelo }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>Tasa</strong></h4>
+                            <h4>{{ item.datos.tasa }}</h4>
+                        </div>
+                        <div>
+                            <h4><strong>Frente</strong></h4>
+                            <h4>{{ item.datos.frente_comun }}</h4>
+                        </div>
+                    </div>
+                    <div class="data-predio">
+                        <div  class="datos-locales">
+                            <h4><strong>Valor fiscal</strong></h4>
+                            <h4>{{ item.datos.valor_fiscal }}</h4>
+                        </div>
+                        <div  class="datos-locales">
+                            <h4><strong>Fecha Alta</strong></h4>
+                            <h4>{{ item.datos.fecha_alta }}</h4>
+                        </div>
+                        <div  class="datos-locales">
+                            <h4><strong>Fecha vig</strong></h4>
+                            <h4>{{ item.datos.fecha_vigencia }}</h4>
+                        </div>
+                        <div  class="datos-locales">
+                            <h4><strong>Fecha Not</strong></h4>
+                            <h4>{{ item.datos.fecha_notificacion }}</h4>
+                        </div>
+                        <div>
+                            <h4><strong>Clave Anterior</strong></h4>
+                            <h4>{{ item.datos.clave_anterior }}</h4>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="domicilio-informacion">
+                    <h4><strong>Domicilio notificacion:</strong></h4>
+                    <div class="data-notificacion">
+                        <div class="datos-locales">
+                            <h4><strong>Colonia</strong></h4>
+                            <h4>{{ item.datos.colonia }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>No.Ext</strong></h4>
+                            <h4>{{ item.datos.numero_exterior }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>No.Int</strong></h4>
+                            <h4>{{ item.datos.numero_interior }}</h4>
+                        </div>
+                        <div>
+                            <h4><strong>Sector</strong></h4>
+                            <h4>{{ item.datos.sector }}</h4>
+                        </div>
+                    </div>
+                    <div class="data-notificacion">
+                        <div class="datos-locales">
+                            <h4><strong>Delegacion</strong></h4>
+                            <h4>{{ item.datos.delegacion }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>Municipio</strong></h4>
+                            <h4>{{ item.datos.municipio }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>Estado</strong></h4>
+                            <h4>{{ item.datos.estado }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>Pais</strong></h4>
+                            <h4>{{ item.datos.pais }}</h4>
+                        </div>
+                        <div class="datos-locales">
+                            <h4><strong>CP</strong></h4>
+                            <h4>{{ item.datos.codigo_postal }}</h4>
+                        </div>
+                        <div>
+                            <h4><strong>Telefono</strong></h4>
+                            <h4>{{ item.datos.telefono }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="bloque-informacion-comentarios">
+                    <h3>Comentarios:</h3>
+                    <h4>{{ item.datos.comentario }}</h4>
+                </div>
+                <div class="firmas">
+                    <div>
+                        <hr>
+                        <h4><strong>Ing. Gortazar<br>Jefe de Registro Inmobiliario</strong></h4>
+                    </div>
+                    <div>
+                        <hr>
+                        <h4><strong>Ing. Gabriel Humberto Gonzales Rios<br>Director de Catastro y Control Urbano</strong></h4>
+                    </div>
+                    <div>
+                        <hr>
+                        <h4><strong>Recibí Original del presente:</strong></h4>
+                    </div>
+                </div>
+                <div class="pie-pagina">
+                    <h5>Corriendose traslado de copia a quien dijo ser el C. _______________________</h5>
+                    <h5>En su carácter de : ______________________________________</h5>
+                    <h5>Quien se identificó con: __________________________________</h5>
+                    <h5>Quien firma al cancel de recibido y entregado: __________________________</h5>
+                    <div>
+                        <h5>Notificado por: __________________________</h5>
+                        <h5>Quien se identificó previamente</h5>
+                    </div>
+                </div>
+             </div>
+           {% endfor %}
+        {% endif %}
+</body>
+</html>

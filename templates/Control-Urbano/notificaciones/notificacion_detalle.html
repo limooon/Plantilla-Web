@@ -1,0 +1,185 @@
+{% extends "base/base.html" %}
+
+{% block page_content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title text-center"><strong>Detalles de Notificación</strong></h5>
+            <a href="{% url 'ControlUrbano:notificaciones_lista' %}" class="btn btn-primary">Regresar</a>
+            <a href="{% url 'ControlUrbano:notificacion_pdf_view' pk=obj.pk %}" class="btn btn-success">Imprimir detalles</a>
+        </div>
+        <div class="card-body">
+            <!-- Sección de Datos Generales del Catastro -->
+            <div class="section">
+                <h5 class="section-title mb-2"><strong>Datos Generales del Catastro</strong></h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nombre_propietario">Nombre del Propietario</label>
+                            <p>{{ obj.datos.nombre_propietario }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="representante_legal">Representante Legal</label>
+                            <p>{{ obj.datos.representante_legal }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="numero_oficial">Número Oficial</label>
+                            <p>{{ obj.datos.numero_oficial }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="clave_catastral">Clave Catastral</label>
+                            <p>{{ obj.datos.clave_catastral }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="superficie">Superficie</label>
+                            <p>{{ obj.datos.superficie }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="calle">Calle</label>
+                            <p>{{ obj.datos.calle }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Ubicación -->
+            <div class="section">
+                <h5 class="section-title mb-2"><strong>Ubicación</strong></h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="colonia">Colonia</label>
+                            <p>{{ obj.datos.colonia }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="delegacion">Delegación</label>
+                            <p>{{ obj.datos.delegacion }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="codigo_postal">Código Postal</label>
+                            <p>{{ obj.datos.codigo_postal }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="manzana">Manzana</label>
+                            <p>{{ obj.datos.manzana }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="lote">Lote</label>
+                            <p>{{ obj.datos.lote }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="fracciones">Fracciones</label>
+                            <p>{{ obj.datos.fracciones }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Detalles del Predio -->
+            <div class="section">
+                <h5 class="section-title mb-2"><strong>Detalles del Predio</strong></h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="parcelas">Parcelas</label>
+                            <p>{{ obj.datos.parcelas }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="condominio">Condominio</label>
+                            <p>{{ obj.datos.get_condominio_display }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="unidad">Unidad</label>
+                            <p>{{ obj.datos.unidad }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nombre_condominio">Nombre del Condominio</label>
+                            <p>{{ obj.datos.nombre_condominio }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="valor_unitario_zona">Valor Unitario Zona</label>
+                            <p>{{ obj.datos.valor_unitario_zona }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="valor_unitario_predio">Valor Unitario Predio</label>
+                            <p>{{ obj.datos.valor_unitario_predio }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Valoración y Otras Características -->
+            <div class="section">
+                <h5 class="section-title mb-2"><strong>Valoración y Otras Características</strong></h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="valor_unitario_provicional">Valor Unitario Provisional</label>
+                            <p>{{ obj.datos.valor_unitario_provicional }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="superficie_construccion">Superficie Construcción</label>
+                            <p>{{ obj.datos.superficie_construccion }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="uso_suelo">Uso de Suelo</label>
+                            <p>{{ obj.datos.get_uso_suelo_display }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tasa">Tasa</label>
+                            <p>{{ obj.datos.tasa }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="frente_comun">Frente Común</label>
+                            <p>{{ obj.datos.get_frente_comun_display }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="valor_fiscal">Valor Fiscal</label>
+                            <p>{{ obj.datos.valor_fiscal }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Fechas y Otros -->
+            <div class="section">
+                <h5 class="section-title mb-2"><strong>Fechas y Otros</strong></h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fecha_alta">Fecha de Alta</label>
+                            <p>{{ obj.datos.fecha_alta }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha_vigencia">Fecha de Vigencia</label>
+                            <p>{{ obj.datos.fecha_vigencia }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="clave_anterior">Clave Anterior</label>
+                            <p>{{ obj.datos.clave_anterior }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="comentario">Comentario</label>
+                            <p>{{ obj.datos.comentario }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo de Predio</label>
+                            <p>{{ obj.datos.get_tipo_display }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
